@@ -2,5 +2,14 @@ services:
   - type: web
     name: layeredgequiz
     env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn edgenos.wsgi"
+    plan: free
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
+      python manage.py migrate --noinput
+    startCommand: gunicorn edgenos.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: edgenos.settings
+      - key: PYTHONUNBUFFERED
+        value: "1"

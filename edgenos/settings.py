@@ -128,3 +128,16 @@ STATICFILES_DIRS = [BASE_DIR / 'edgenosquiz/static']
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import dj_database_url
+
+if os.environ.get('RENDER'):
+    DEBUG = False
+    ALLOWED_HOSTS = ['layeredgequiz.onrender.com']
+
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+
+    # Whitenoise settings
+    MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
