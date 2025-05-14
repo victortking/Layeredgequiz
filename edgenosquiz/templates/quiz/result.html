@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz Completed!</h1>
+        <p>You've successfully completed the quiz.</p>
+        <p>Your Score: {{ score }}/{{ total }} ({{ percentage|floatformat:1 }}%)</p>
+        <p>{{ feedback }}</p>
+        <p>Here's a link to the Layeredge <a href="https://docs.layeredge.io/">document</a></p>
+        <a href="{% url 'edgenosquiz' %}" class="button">Retake Quiz</a>
+    </div>
+</body>
+</html>
