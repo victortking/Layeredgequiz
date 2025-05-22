@@ -129,7 +129,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'edgenosquiz', 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#import dj_database_url
+import dj_database_url
 
 if os.environ.get('RENDER'):
     DEBUG = False
